@@ -1,0 +1,56 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <script src="station.js">
+
+  </script>
+  <script src="train.js">
+  </script>
+  <script>
+
+    var map;
+   function arrayOfCities(){
+          var cities = getAllStations();
+           map = new google.maps.Map(document.getElementById('map'), {
+            center: cities[0].latLng ,
+            zoom: 6
+          });
+          for(var i=0;i<cities.length;i++){
+            cities[i].addMarker(map);
+          
+          }
+        }
+      </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
+
+  </script>
+      <meta charset="UTF-8">
+      <title>RailwayMap</title>
+      <style>
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map{width:70%;float:left;height:100%;}
+       #text{width:30%;float:right;height:100%;}
+      </style>
+  </head>
+
+  <body>
+  <div id="map"></div>
+  <div id="text">
+    <form >
+    Enter the sourceStation :<br>
+    <input type="text" name="sourceStation" id="sourceStation">
+    <br><br>
+    Enter the destinationStation :<br>
+    <input type="text" name="destinationStation" id="destinationStation">
+    </form>
+  </div>
+
+  </body>
+  </html>
