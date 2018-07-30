@@ -6,6 +6,19 @@
   </script>
   <script src="train.js">
   </script>
+  <script type="text/javascript">
+    function getPossibleTrains(){
+      var trains=getAllTrains();
+      for(var i=0;i<trains.length;i++){
+        </<!DOCTYPE html>
+        <html>
+        <body>
+        <h5>The train number is //want to display the train no ie,trains[i].number</h5>
+        </body>
+        </html>
+      }
+    }
+  </script>
   <script>
 
     var map;
@@ -36,7 +49,7 @@
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
         #map{width:70%;float:left;height:100%;}
-       #text{width:30%;float:right;height:100%;}
+        #text{width:30%;float:right;height:100%;}
       </style>
   </head>
 
@@ -44,11 +57,13 @@
   <div id="map"></div>
   <div id="text">
     <form >
-    Enter the sourceStation :<br>
-    <input type="text" name="sourceStation" id="sourceStation">
-    <br><br>
-    Enter the destinationStation :<br>
-    <input type="text" name="destinationStation" id="destinationStation">
+      Enter the sourceStation :<br>
+      <input type="text" name="sourceStation" id="sourceStation">
+      <br><br>
+      Enter the destinationStation :<br>
+      <input type="text" name="destinationStation" id="destinationStation">
+      <br><br>
+      <button onclick="">GetTrains</button>
     </form>
   </div>
 
