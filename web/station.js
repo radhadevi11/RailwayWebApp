@@ -1,13 +1,19 @@
 class Station{
     constructor(latLng,code,name){
-    this.latLng = latLng;
-   this.code = code;
-   this.name = name;
-    }
+         this.latLng = latLng;
+         this.code = code;
+         this.name = name;
+  }
    addMarker(map){
        var marker = new google.maps.Marker({position:this.latLng,map: map,title:this.name});
+       var name = this.name;
         marker.addListener('click', function() {
-                  document.getElementById('sourceStation').value=this.name;
+                  if(document.getElementById('sourceStation').value==""){
+                  document.getElementById('sourceStation').value=name;
+                }
+                  else{
+                    document.getElementById('destinationStation').value=name;
+                  }
               
             });
     }

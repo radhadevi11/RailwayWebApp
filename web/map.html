@@ -2,26 +2,33 @@
   <html lang="en">
   <head>
   <script src="station.js">
-
   </script>
+
   <script src="train.js">
   </script>
+
   <script type="text/javascript">
     function getPossibleTrains(){
       var trains=getAllTrains();
+      var myString="";
       for(var i=0;i<trains.length;i++){
-        </<!DOCTYPE html>
-        <html>
-        <body>
-        <h5>The train number is //want to display the train no ie,trains[i].number</h5>
-        </body>
-        </html>
+      var code=
+               "<h5>The train name is "+trains[i].name+"</h5>\n"+
+               "<h5>The train number is "+trains[i].number+"</h5>\n"+
+               "<h5>The source station is"+trains[i].sourceStation.name+"</h5>\n"+
+               "<h5>The destinationStation is"+trains[i].destinationStation.name+"</h5>";
+      myString =myString+","+trains[i].name;
+      document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
+   
+
       }
+      alert(myString);
+
     }
   </script>
-  <script>
 
-    var map;
+  <script>
+   var map;
    function arrayOfCities(){
           var cities = getAllStations();
            map = new google.maps.Map(document.getElementById('map'), {
@@ -34,9 +41,10 @@
           }
         }
       </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
   </script>
+
       <meta charset="UTF-8">
       <title>RailwayMap</title>
       <style>
@@ -50,6 +58,7 @@
          * element that contains the map. */
         #map{width:70%;float:left;height:100%;}
         #text{width:30%;float:right;height:100%;}
+        #trainResult{width:100%;height:50%;}
       </style>
   </head>
 
@@ -63,8 +72,13 @@
       Enter the destinationStation :<br>
       <input type="text" name="destinationStation" id="destinationStation">
       <br><br>
-      <button onclick="">GetTrains</button>
+     
+    
     </form>
+     <button onclick="getPossibleTrains()">GetTrains</button>
+     <div id="trainResult">
+       
+     </div>
   </div>
 
   </body>
