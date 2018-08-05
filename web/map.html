@@ -10,20 +10,14 @@
   <script type="text/javascript">
     function getPossibleTrains(){
       var trains=getAllTrains();
-      var myString="";
       for(var i=0;i<trains.length;i++){
-      var code=
+         var code=
                "<h5>The train name is "+trains[i].name+"</h5>\n"+
                "<h5>The train number is "+trains[i].number+"</h5>\n"+
                "<h5>The source station is"+trains[i].sourceStation.name+"</h5>\n"+
                "<h5>The destinationStation is"+trains[i].destinationStation.name+"</h5>";
-      myString =myString+","+trains[i].name;
-      document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
-   
-
+         document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
       }
-      alert(myString);
-
     }
   </script>
 
@@ -33,14 +27,14 @@
           var cities = getAllStations();
            map = new google.maps.Map(document.getElementById('map'), {
             center: cities[0].latLng ,
-            zoom: 6
+            zoom:5 
           });
           for(var i=0;i<cities.length;i++){
             cities[i].addMarker(map);
           
           }
-        }
-      </script>
+   }
+  </script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
   </script>
@@ -76,8 +70,7 @@
     
     </form>
      <button onclick="getPossibleTrains()">GetTrains</button>
-     <div id="trainResult">
-       
+     <div id="trainResult">      
      </div>
   </div>
 
