@@ -9,15 +9,27 @@
 
   <script type="text/javascript">
     function getPossibleTrains(){
+      var code1=
+      "<table id="train">\n"+
+  "<tr>\n"+
+    "<th>TrainName</th>\n"+
+    "<th>TrainNumber</th>\n"+
+    "<th>SourceStation</th>\n"+
+    "<th>DestinationStation</th>\n"+
+  "</tr>\n";
+   document.getElementById('trainResult').innerHTML = code1;
       var trains=getAllTrains();
       for(var i=0;i<trains.length;i++){
          var code=
-               "<h5>The train name is "+trains[i].name+"</h5>\n"+
-               "<h5>The train number is "+trains[i].number+"</h5>\n"+
-               "<h5>The source station is"+trains[i].sourceStation.name+"</h5>\n"+
-               "<h5>The destinationStation is"+trains[i].destinationStation.name+"</h5>";
+    "<tr>\n"+
+    "<td>"+trains[i].name+"</td>\n"+
+    "<td>"+trains[i].number+"</td>\n"+
+    "<td>"+trains[i].sourceStation.name+"</td>\n"+
+    "<td>"+trains[i].destinationStation.name+"</td>\n"+
+  "</tr>\n";
          document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
       }
+      document.getElementById('trainResult').innerHTML=document.getElementById('trainResult').innerHTML+"</table>";
     }
   </script>
 
@@ -53,6 +65,8 @@
         #map{width:70%;float:left;height:100%;}
         #text{width:30%;float:right;height:100%;}
         #trainResult{width:100%;height:50%;}
+       
+
       </style>
   </head>
 
