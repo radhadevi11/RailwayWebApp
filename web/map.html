@@ -10,17 +10,17 @@
   <script type="text/javascript">
     function getPossibleTrains(){
       var code1=
-      "<table id="train">\n"+
+      "<table id="+"train"+">\n"+
   "<tr>\n"+
     "<th>TrainName</th>\n"+
     "<th>TrainNumber</th>\n"+
     "<th>SourceStation</th>\n"+
     "<th>DestinationStation</th>\n"+
   "</tr>\n";
-   document.getElementById('trainResult').innerHTML = code1;
+  document.getElementById('trainResult').innerHTML=code1;
       var trains=getAllTrains();
       for(var i=0;i<trains.length;i++){
-         var code=
+         var code= 
     "<tr>\n"+
     "<td>"+trains[i].name+"</td>\n"+
     "<td>"+trains[i].number+"</td>\n"+
@@ -30,6 +30,7 @@
          document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
       }
       document.getElementById('trainResult').innerHTML=document.getElementById('trainResult').innerHTML+"</table>";
+      alert(document.getElementById('trainResult').innerHTML);
     }
   </script>
 
@@ -65,6 +66,30 @@
         #map{width:70%;float:left;height:100%;}
         #text{width:30%;float:right;height:100%;}
         #trainResult{width:100%;height:50%;}
+
+#train {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#train td, #train th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#train tr:nth-child(even){background-color: #f2f2f2;}
+
+#train tr:hover {background-color: #ddd;}
+
+#train th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
        
 
       </style>
