@@ -9,7 +9,7 @@
 
   <script type="text/javascript">
     function getPossibleTrains(){
-      var code1=
+      var tableHeader=
       "<table id="+"train"+">\n"+
   "<tr>\n"+
     "<th>TrainName</th>\n"+
@@ -17,19 +17,21 @@
     "<th>SourceStation</th>\n"+
     "<th>DestinationStation</th>\n"+
   "</tr>\n";
-  document.getElementById('trainResult').innerHTML=code1;
       var trains=getAllTrains();
+      var trainDetail ="";
       for(var i=0;i<trains.length;i++){
-         var code= 
-    "<tr>\n"+
+         var tableBody= 
+             "<tr>\n"+
     "<td>"+trains[i].name+"</td>\n"+
     "<td>"+trains[i].number+"</td>\n"+
     "<td>"+trains[i].sourceStation.name+"</td>\n"+
     "<td>"+trains[i].destinationStation.name+"</td>\n"+
-  "</tr>\n";
-         document.getElementById('trainResult').innerHTML = document.getElementById('trainResult').innerHTML+code;
+    "</tr>\n";
+          trainDetail = trainDetail+tableBody;
+       
       }
-      document.getElementById('trainResult').innerHTML=document.getElementById('trainResult').innerHTML+"</table>";
+
+      document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
       alert(document.getElementById('trainResult').innerHTML);
     }
   </script>
@@ -63,8 +65,8 @@
         }
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
-        #map{width:70%;float:left;height:100%;}
-        #text{width:30%;float:right;height:100%;}
+        #map{width:60%;float:left;height:100%;}
+        #text{width:40%;float:right;height:100%;}
         #trainResult{width:100%;height:50%;}
 
 #train {
