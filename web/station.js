@@ -24,11 +24,3 @@ class LatLng {
     this.lng = lng;
   }
 }
-function getAllStations(){
-//return the list of all stations
-var cities = [new Station((new LatLng(11.3410,77.7172)),"ED","Erode"),
-              new Station((new LatLng(11.0168,76.9558)),"CBE","Coimbatore"),
-             new Station((new LatLng(13.0827,80.2707)),"MAS","Chennai")];
-   return cities;
-
-}
