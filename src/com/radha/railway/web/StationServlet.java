@@ -27,12 +27,7 @@ public class StationServlet extends HttpServlet{
        resp.getWriter().println(jsonString);
    }
    //C:\Users\radha\.m2\repository\com\google\code\gson\gson\2.8.5 =>jar file location
-    /*Write a train servlet class.
-     It should call the getTrains method.
-     For the parameters we should call the getParameter method of req
-     convert the returnValue into the json format String.
-     Send the String value to the client
-     */
+
 
 
 }

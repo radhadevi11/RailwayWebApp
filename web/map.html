@@ -1,121 +1,132 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <script src="station.js">
-  </script>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <script src="station.js">
+      </script>
 
-  <script src="train.js">
-  </script>
+      <script src="train.js">
+      </script>
 
-  <script src="service.js"></script>
+      <script src="service.js"></script>
 
-  <script type="text/javascript">
-    function getPossibleTrains(){
-      var tableHeader=
-      "<table id="+"train"+">\n"+
-  "<tr>\n"+
-    "<th>TrainName</th>\n"+
-    "<th>TrainNumber</th>\n"+
-    "<th>SourceStation</th>\n"+
-    "<th>DestinationStation</th>\n"+
-  "</tr>\n";
-      var trains=getAllTrains();
-      var trainDetail ="";
-      for(var i=0;i<trains.length;i++){
-         var tableBody= 
-             "<tr>\n"+
-    "<td>"+trains[i].name+"</td>\n"+
-    "<td>"+trains[i].number+"</td>\n"+
-    "<td>"+trains[i].sourceStation.name+"</td>\n"+
-    "<td>"+trains[i].destinationStation.name+"</td>\n"+
-    "</tr>\n";
-          trainDetail = trainDetail+tableBody;
-       
-      }
+      <script type="text/javascript">
+        function getPossibleTrains(){
+          var tableHeader=
+          "<table id="+"train"+">\n"+
+      "<tr>\n"+
+        "<th>TrainName</th>\n"+
+        "<th>TrainNumber</th>\n"+
+        "<th>SourceStation</th>\n"+
+        "<th>DestinationStation</th>\n"+
+      "</tr>\n";
+          var trains=getAllTrains();
+          var trainDetail ="";
+          for(var i=0;i<trains.length;i++){
+             var tableBody= 
+                 "<tr>\n"+
+        "<td>"+trains[i].name+"</td>\n"+
+        "<td>"+trains[i].number+"</td>\n"+
+        "<td>"+trains[i].sourceStation.name+"</td>\n"+
+        "<td>"+trains[i].destinationStation.name+"</td>\n"+
+        "</tr>\n";
+              trainDetail = trainDetail+tableBody;
 
-      document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
-      alert(document.getElementById('trainResult').innerHTML);
-    }
-  </script>
-
-  <script>
-   var map;
-   function arrayOfCities(){
-          var cities = getAllStations();
-           map = new google.maps.Map(document.getElementById('map'), {
-            center: cities[0].latLng ,
-            zoom:5 
-          });
-          for(var i=0;i<cities.length;i++){
-            cities[i].addMarker(map);
-          
           }
-   }
-  </script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
-  </script>
-
-      <meta charset="UTF-8">
-      <title>RailwayMap</title>
-      <style>
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
+          document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
+          alert(document.getElementById('trainResult').innerHTML);
         }
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map{width:60%;float:left;height:100%;}
-        #text{width:40%;float:right;height:100%;}
-        #trainResult{width:100%;height:50%;}
+          function requestTime(){
+             var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+             var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
+             var request = new XMLHttpRequest();
+             request.open('GET','http://localhost:8080/railway/trains?=sourceStationCode'+sourceStationCodeValue+'              &=destinationStationCode'+destinationStationCodeValue,false); 
+             request.send(null);//request body is null
+         //alert(request.responseText);
+       }
+      </script>
 
-#train {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+      <script>
+       var map;
+       function arrayOfCities(){
+              var cities = getAllStations();
+               map = new google.maps.Map(document.getElementById('map'), {
+                center: cities[0].latLng ,
+                zoom:5 
+              });
+              for(var i=0;i<cities.length;i++){
+                cities[i].addMarker(map);
 
-#train td, #train th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
+              }
+       }
+          
+      </script>
 
-#train tr:nth-child(even){background-color: #f2f2f2;}
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
+      </script>
 
-#train tr:hover {background-color: #ddd;}
+          <meta charset="UTF-8">
+          <title>RailwayMap</title>
+          <style>
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            }
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map{width:60%;float:left;height:100%;}
+            #text{width:40%;float:right;height:100%;}
+            #trainResult{width:100%;height:50%;}
 
-#train th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
+    #train {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-       
+    #train td, #train th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
-      </style>
-  </head>
+    #train tr:nth-child(even){background-color: #f2f2f2;}
 
-  <body>
-  <div id="map"></div>
-  <div id="text">
-    <form >
-      Enter the sourceStation :<br>
-      <input type="text" name="sourceStation" id="sourceStation">
-      <br><br>
-      Enter the destinationStation :<br>
-      <input type="text" name="destinationStation" id="destinationStation">
-      <br><br>
-     
-    
-    </form>
-     <button onclick="getPossibleTrains()">GetTrains</button>
-     <div id="trainResult">      
-     </div>
-  </div>
+    #train tr:hover {background-color: #ddd;}
 
-  </body>
-  </html>
+    #train th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+
+
+          </style>
+      </head>
+
+      <body>
+      <div id="map"></div>
+      <div id="text">
+        <form >
+          Enter the sourceStation :<br>
+          <input type="text" name="sourceStation" id="sourceStation">
+          <br><br>
+          <input type="hidden" id="sourceStationCode" name="sourceStationCode" >
+          Enter the destinationStation :<br>
+          <input type="text" name="destinationStation" id="destinationStation">
+          <input type="hidden" name="destinationStationCode" id="destinationStationCode">
+          <br><br>
+
+
+        </form>
+         <button onclick="getPossibleTrains()">GetTrains</button>
+         <div id="trainResult">      
+         </div>
+      </div>
+
+      </body>
+      </html>
