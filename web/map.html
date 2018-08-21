@@ -36,7 +36,7 @@
           document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
           alert(document.getElementById('trainResult').innerHTML);
         }
-          function requestTime(){
+          function requestStationCode(){
              var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
              var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
              var request = new XMLHttpRequest();
@@ -123,7 +123,7 @@
 
 
         </form>
-         <button onclick="getPossibleTrains()">GetTrains</button>
+         <button onclick="requestStationCode();getPossibleTrains();">GetTrains</button>
          <div id="trainResult">      
          </div>
       </div>
