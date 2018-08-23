@@ -36,15 +36,8 @@
           document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
           alert(document.getElementById('trainResult').innerHTML);
         }
-          function requestStationCode(){
-             var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
-             var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
-             var request = new XMLHttpRequest();
-             request.open('GET','http://localhost:8080/railway/trains?=sourceStationCode'+sourceStationCodeValue+'              &=destinationStationCode'+destinationStationCodeValue,false); 
-             request.send(null);//request body is null
-         //alert(request.responseText);
-       }
-      </script>
+          
+    </script>
 
       <script>
        var map;
@@ -123,7 +116,7 @@
 
 
         </form>
-         <button onclick="requestStationCode();getPossibleTrains();">GetTrains</button>
+         <button onclick="getPossibleTrains();">GetTrains</button>
          <div id="trainResult">      
          </div>
       </div>

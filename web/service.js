@@ -15,14 +15,17 @@
 
     }
     function getAllTrains(){
-        var request = new XMLHttpRequest();
-         request.open('GET','http://localhost:8080/railway/trains',false); 
+         var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+         var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
+         var request = new XMLHttpRequest();
+         request.open('GET','http://localhost:8080/railway/trains?sourceStationCode='+sourceStationCodeValue+
+                     '&destinationStationCode='+destinationStationCodeValue,false); 
          request.send(null);
          var trainsJsonArray=JSON.parse(request.responseText);//loop through this json array,
          //and convert each json objects to a station object add a station object to a station array
          var trains=[] ;
          for(var i=0;i<trainsJsonArray.length;i++){
-            trains.push(new train(trainsJsonArray[i].number,
+            trains.push(new Train(trainsJsonArray[i].number,
             	trainsJsonArray[i].name,
             	trainsJsonArray[i].sourceStation,
             	trainsJsonArray[i].destinationStation)
