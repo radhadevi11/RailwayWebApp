@@ -10,7 +10,7 @@
       <script src="service.js"></script>
 
       <script type="text/javascript">
-        function getPossibleTrains(){
+        function getAllTrains(){
           var tableHeader=
           "<table id="+"train"+">\n"+
       "<tr>\n"+
@@ -36,16 +36,23 @@
           document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
           alert(document.getElementById('trainResult').innerHTML);
         }
-          
-    </script>
+          function requestStationCode(){
+             var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+             var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
+             var request = new XMLHttpRequest();
+             request.open('GET','http://localhost:8080/railway/trains?=sourceStationCode'+sourceStationCodeValue+'              &=destinationStationCode'+destinationStationCodeValue,false); 
+             request.send(null);//request body is null
+         //alert(request.responseText);
+       }
+      </script>
 
       <script>
        var map;
        function arrayOfCities(){
               var cities = getAllStations();
                map = new google.maps.Map(document.getElementById('map'), {
-                center: cities[0].latLng ,
-                zoom:5 
+                center:{lat:11.5246,lng: 77.4702},
+                zoom:7
               });
               for(var i=0;i<cities.length;i++){
                 cities[i].addMarker(map);
@@ -54,6 +61,20 @@
        }
           
       </script>
+    <script >
+      function checkEmptyTextBox() {
+    var sourceStationValue = document.getElementById('sourceStation').value;
+    var destinationStationValue = document.getElementById('destinationStation').value;
+    if (sourceStationValue == "") {
+        alert("please fill the SourceStation");
+        return false;
+    }
+    if(destinationStationValue == ""){
+      alert("please fill the DestinationStation");
+      return false;
+    }
+}
+</script>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
       </script>
@@ -106,17 +127,17 @@
       <div id="text">
         <form >
           Enter the sourceStation :<br>
-          <input type="text" name="sourceStation" id="sourceStation">
+          <input type="text" name="sourceStation" id="sourceStation"  readonly>
           <br><br>
-          <input type="hidden" id="sourceStationCode" name="sourceStationCode" >
+          <input type="hidden" id="sourceStationCode" name="sourceStationCode">
           Enter the destinationStation :<br>
-          <input type="text" name="destinationStation" id="destinationStation">
+          <input type="text" name="destinationStation" id="destinationStation" readonly>
           <input type="hidden" name="destinationStationCode" id="destinationStationCode">
           <br><br>
 
 
         </form>
-         <button onclick="getPossibleTrains();">GetTrains</button>
+         <button onclick="requestStationCode();getAllTrains();checkEmptyTextBox()">GetTrains</button>
          <div id="trainResult">      
          </div>
       </div>
