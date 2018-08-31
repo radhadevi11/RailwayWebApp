@@ -56,9 +56,6 @@
 
               }
        }
-          
-      </script>
-    <script >
       function checkEmptyTextBox() {
     var sourceStationValue = document.getElementById('sourceStation').value;
     var destinationStationValue = document.getElementById('destinationStation').value;
@@ -71,6 +68,9 @@
     }
     
 }
+    function showStops(train){
+      //show the intermediate stations for the train which the user choose
+    }
 </script>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
@@ -89,9 +89,11 @@
              * element that contains the map. */
             #map{width:60%;float:left;height:100%;}
             #text{width:40%;float:right;height:100%;}
-            #trainResult{width:100%;height:50%;}
+            #trainResult{width:100%;height:40%;}
+            #stops{width: 100%;height:30%; }
 
     #train {
+        padding: 3px;
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         width: 100%;
@@ -130,12 +132,14 @@
           Enter the destinationStation :<br>
           <input type="text" name="destinationStation" id="destinationStation" readonly>
           <input type="hidden" name="destinationStationCode" id="destinationStationCode">
-          <br><br>
-
-
+          <input type="reset" value="Clear">
         </form>
-         <button onclick="getPossibleTrains();">GetTrains</button>
+        <br><br>
+        <button onclick="getPossibleTrains();">GetTrains</button>
+        
          <div id="trainResult">      
+         </div>
+         <div id="stops">
          </div>
       </div>
 

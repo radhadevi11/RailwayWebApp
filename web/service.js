@@ -25,10 +25,12 @@
          //and convert each json objects to a station object add a station object to a station array
          var trains=[] ;
          for(var i=0;i<trainsJsonArray.length;i++){
+         	var trainStops=[];//For each trainStop in the ith train create a TrainStop object and push it in trainStops array,
             trains.push(new Train(trainsJsonArray[i].number,
             	trainsJsonArray[i].name,
             	trainsJsonArray[i].sourceStation,
-            	trainsJsonArray[i].destinationStation)
+            	trainsJsonArray[i].destinationStation,trainStops)
+
                 );
          }
          return trains;
