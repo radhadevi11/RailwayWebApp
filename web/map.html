@@ -10,7 +10,10 @@
       <script src="service.js"></script>
 
       <script type="text/javascript">
-        function getAllTrains(){
+        function getPossibleTrains(){
+          if(!checkEmptyTextBox()){
+            return;
+          }
           var tableHeader=
           "<table id="+"train"+">\n"+
       "<tr>\n"+
@@ -35,15 +38,9 @@
 
           document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
           alert(document.getElementById('trainResult').innerHTML);
+
         }
-          function requestStationCode(){
-             var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
-             var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
-             var request = new XMLHttpRequest();
-             request.open('GET','http://localhost:8080/railway/trains?=sourceStationCode'+sourceStationCodeValue+'              &=destinationStationCode'+destinationStationCodeValue,false); 
-             request.send(null);//request body is null
-         //alert(request.responseText);
-       }
+          
       </script>
 
       <script>
@@ -65,14 +62,14 @@
       function checkEmptyTextBox() {
     var sourceStationValue = document.getElementById('sourceStation').value;
     var destinationStationValue = document.getElementById('destinationStation').value;
-    if (sourceStationValue == "") {
-        alert("please fill the SourceStation");
+    if(sourceStationValue == "" || destinationStationValue==""){
+       alert("Please choose both the source and the destination stations");
         return false;
     }
-    if(destinationStationValue == ""){
-      alert("please fill the DestinationStation");
-      return false;
+    else{
+      return true;
     }
+    
 }
 </script>
 
@@ -137,7 +134,7 @@
 
 
         </form>
-         <button onclick="requestStationCode();getAllTrains();checkEmptyTextBox()">GetTrains</button>
+         <button onclick="getPossibleTrains();">GetTrains</button>
          <div id="trainResult">      
          </div>
       </div>
