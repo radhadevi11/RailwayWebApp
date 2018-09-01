@@ -26,6 +26,14 @@
          var trains=[] ;
          for(var i=0;i<trainsJsonArray.length;i++){
          	var trainStops=[];//For each trainStop in the ith train create a TrainStop object and push it in trainStops array,
+         	for(var j=0;j<trainsJsonArray[i].trainStops.length;j++){
+         		trainStops.push(new TrainStop(trainsJsonArray[i].trainStops[j].arrivalTime,
+         			     trainsJsonArray[i].trainStops[j].departureTime,
+         			     trainsJsonArray[i].trainStops[j].sequence,
+         			     trainsJsonArray[i].trainStops[j].station.name,
+         			     trainsJsonArray[i].trainStops[j].distance)
+         			    );
+         	}
             trains.push(new Train(trainsJsonArray[i].number,
             	trainsJsonArray[i].name,
             	trainsJsonArray[i].sourceStation,

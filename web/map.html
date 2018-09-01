@@ -10,6 +10,8 @@
       <script src="service.js"></script>
 
       <script type="text/javascript">
+      var trains;
+      var map;
         function getPossibleTrains(){
           if(!checkEmptyTextBox()){
             return;
@@ -22,11 +24,11 @@
         "<th>SourceStation</th>\n"+
         "<th>DestinationStation</th>\n"+
       "</tr>\n";
-          var trains=getAllTrains();
+           trains=getAllTrains();
           var trainDetail ="";
           for(var i=0;i<trains.length;i++){
              var tableBody= 
-                 "<tr>\n"+
+                 "<tr onclick=\"showStops("+i+")\">\n"+
         "<td>"+trains[i].name+"</td>\n"+
         "<td>"+trains[i].number+"</td>\n"+
         "<td>"+trains[i].sourceStation.name+"</td>\n"+
@@ -41,10 +43,7 @@
 
         }
           
-      </script>
-
-      <script>
-       var map;
+       
        function arrayOfCities(){
               var cities = getAllStations();
                map = new google.maps.Map(document.getElementById('map'), {
@@ -68,8 +67,12 @@
     }
     
 }
-    function showStops(train){
+    function showStops(trainPosition){
       //show the intermediate stations for the train which the user choose
+      //Get the train from trainPosition of trains array
+      //For each TrainStop in the train print the information in a table row
+      //put the table in the stops div innerHtml
+      document.getElementById('stops').innerHTML = "Showing Stops";
     }
 </script>
 
@@ -132,11 +135,10 @@
           Enter the destinationStation :<br>
           <input type="text" name="destinationStation" id="destinationStation" readonly>
           <input type="hidden" name="destinationStationCode" id="destinationStationCode">
+           <br><br>
+          <button onclick="getPossibleTrains();return false;">GetTrains</button>
           <input type="reset" value="Clear">
         </form>
-        <br><br>
-        <button onclick="getPossibleTrains();">GetTrains</button>
-        
          <div id="trainResult">      
          </div>
          <div id="stops">
