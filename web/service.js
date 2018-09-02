@@ -1,7 +1,7 @@
     function getAllStations(){
-        var request = new XMLHttpRequest();
-         request.open('GET','http://localhost:8080/railway/stations',false); 
-         request.send(null);
+        var request = new XMLHttpRequest(); //creating a object with the type of XMLHTTPRequest()
+         request.open('GET','http://localhost:8080/railway/stations',false); //open method with the 3 parameter 
+         request.send(null);//request body is null
          var stationsJsonArray=JSON.parse(request.responseText);//loop through this json array,
          //and convert each json objects to a station object add a station object to a station array
          var stations=[] ;
@@ -15,7 +15,7 @@
 
     }
     function getAllTrains(){
-         var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+         var sourceStationCodeValue = document.getElementById('sourceStationCode').value;//getting the element value by it's ID
          var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
          var request = new XMLHttpRequest();
          request.open('GET','http://localhost:8080/railway/trains?sourceStationCode='+sourceStationCodeValue+

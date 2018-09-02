@@ -46,12 +46,12 @@
        
        function arrayOfCities(){
               var cities = getAllStations();
-               map = new google.maps.Map(document.getElementById('map'), {
+               map = new google.maps.Map(document.getElementById('map'), {//google.maps.map constructor The ID where the map will place,which location will be center,How much the map will be zoom
                 center:{lat:11.5246,lng: 77.4702},
                 zoom:7
               });
               for(var i=0;i<cities.length;i++){
-                cities[i].addMarker(map);
+                cities[i].addMarker(map);//calling addMarker function for adding marker for given map
 
               }
        }
@@ -72,7 +72,32 @@
       //Get the train from trainPosition of trains array
       //For each TrainStop in the train print the information in a table row
       //put the table in the stops div innerHtml
-      document.getElementById('stops').innerHTML = "Showing Stops";
+      var currentTrainStops=trains[trainPosition].trainStops;
+       var tableHeader=
+          "<table id="+"train"+">\n"+
+      "<tr>\n"+
+        "<th>ArrivalTime</th>\n"+
+        "<th>DepartureTime</th>\n"+
+        "<th>Sequence</th>\n"+
+        "<th>stationName</th>\n"+
+        "<th>Distance</th>\n"+
+      "</tr>\n";
+
+      var trainStopDetail ="";
+          for(var i=0;i<currentTrainStops.length;i++){
+             var tableBody= 
+                 "<tr onclick=\"showStops("+i+")\">\n"+
+        "<td>"+currentTrainStops[i].arrivalTime+"</td>\n"+
+        "<td>"+currentTrainStops[i].departureTime+"</td>\n"+
+        "<td>"+currentTrainStops[i].sequence+"</td>\n"+
+        "<td>"+currentTrainStops[i].stationName+"</td>\n"+
+        "<td>"+currentTrainStops[i].distance+"</td>\n"+
+        "</tr>\n";
+              trainStopDetail = trainStopDetail+tableBody;
+
+          }   
+           alert(document.getElementById('stops').innerHTML);
+      document.getElementById('stops').innerHTML = tableHeader+trainStopDetail+"</table>";
     }
 </script>
 
