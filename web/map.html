@@ -46,12 +46,12 @@
        
        function arrayOfCities(){
               var cities = getAllStations();
-               map = new google.maps.Map(document.getElementById('map'), {//google.maps.map constructor The ID where the map will place,which location will be center,How much the map will be zoom
+               map = new google.maps.Map(document.getElementById('map'), {/*google.maps.map constructor The ID where the map will place,which location will be center,How much the map will be zoom*/
                 center:{lat:11.5246,lng: 77.4702},
                 zoom:7
               });
               for(var i=0;i<cities.length;i++){
-                cities[i].addMarker(map);//calling addMarker function for adding marker for given map
+                cities[i].addMarker(map);//calling addMarker function for adding marker for given 
 
               }
        }
@@ -98,6 +98,14 @@
           }   
            alert(document.getElementById('stops').innerHTML);
       document.getElementById('stops').innerHTML = tableHeader+trainStopDetail+"</table>";
+      document.getElementById('stops').innerHTML =  document.getElementById('stops').innerHTML+"<button onclick=\"closeStopsPopUp()\">Close</button>";
+      openStopsPopUp();
+    }
+    function closeStopsPopUp(){
+       document.getElementById('stops').setAttribute('class','hiddenStops');
+    }
+    function openStopsPopUp(){
+      document.getElementById('stops').setAttribute('class','visibleStops');
     }
 </script>
 
@@ -117,10 +125,10 @@
              * element that contains the map. */
             #map{width:60%;float:left;height:100%;}
             #text{width:40%;float:right;height:100%;}
-            #trainResult{width:100%;height:40%;}
-            #stops{width: 100%;height:30%; }
+            #trainResult{width:100%;height:70%;}
 
     #train {
+        border: 2px solid black;
         padding: 3px;
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -143,7 +151,26 @@
         background-color: #4CAF50;
         color: white;
     }
-
+    #stops {
+    border: 2px solid black;
+    width: 600px;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    left: 20%;
+    margin-left: -80px;
+   }
+   .hiddenStops{
+    visibility: hidden;
+   }
+   .visibleStops{
+    visibility: visible;
+   }
 
 
           </style>
@@ -166,9 +193,8 @@
         </form>
          <div id="trainResult">      
          </div>
-         <div id="stops">
-         </div>
       </div>
-
+       <div id="stops" class="hiddenStops">
+       </div>
       </body>
       </html>
