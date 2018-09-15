@@ -12,9 +12,14 @@
       <script type="text/javascript">
       var trains;
       var map;
+      var flightPath;
         function getPossibleTrains(){
           if(!checkEmptyTextBox()){
             return;
+          }
+          trains=getAllTrains();
+          if(trains.length==0){
+            alert("There is no train available for this stations");
           }
           var tableHeader=
           "<table id="+"train"+">\n"+
@@ -24,11 +29,11 @@
         "<th>SourceStation</th>\n"+
         "<th>DestinationStation</th>\n"+
       "</tr>\n";
-           trains=getAllTrains();
+           
           var trainDetail ="";
           for(var i=0;i<trains.length;i++){
              var tableBody= 
-                 "<tr onclick=\"showStops("+i+")\">\n"+
+                 "<tr onclick=\"clickTrain("+i+")\">\n"+
         "<td>"+trains[i].name+"</td>\n"+
         "<td>"+trains[i].number+"</td>\n"+
         "<td>"+trains[i].sourceStation.name+"</td>\n"+
@@ -86,7 +91,7 @@
       var trainStopDetail ="";
           for(var i=0;i<currentTrainStops.length;i++){
              var tableBody= 
-                 "<tr onclick=\"showStops("+i+")\">\n"+
+                 "<tr>\n"+
         "<td>"+currentTrainStops[i].arrivalTime+"</td>\n"+
         "<td>"+currentTrainStops[i].departureTime+"</td>\n"+
         "<td>"+currentTrainStops[i].sequence+"</td>\n"+
@@ -96,16 +101,51 @@
               trainStopDetail = trainStopDetail+tableBody;
 
           }   
-           alert(document.getElementById('stops').innerHTML);
       document.getElementById('stops').innerHTML = tableHeader+trainStopDetail+"</table>";
       document.getElementById('stops').innerHTML =  document.getElementById('stops').innerHTML+"<button onclick=\"closeStopsPopUp()\">Close</button>";
       openStopsPopUp();
+      document.getElementById('stops').innerHTML =  document.getElementById('stops').innerHTML+""
+
     }
     function closeStopsPopUp(){
        document.getElementById('stops').setAttribute('class','hiddenStops');
     }
     function openStopsPopUp(){
       document.getElementById('stops').setAttribute('class','visibleStops');
+    }
+    function clickTrain(trainPosition){
+       showStops(trainPosition);
+       drawLines(trainPosition);
+
+    }
+    function getLatLngs(trainPosition){
+      var currentTrainStops=trains[trainPosition].trainStops;
+      var latLngResult = [];
+      for(var i=0;i<currentTrainStops.length;i++){
+           latLngResult.push(trains[trainPosition].trainStops[i].latLng);
+       }
+       return latLngResult;
+
+    }
+    function drawLines(trainPosition){
+      var latLngResult = getLatLngs(trainPosition);
+      var flightPathCoordinates =[];
+      for(var i=0;i<latLngResult.length;i++){
+           flightPathCoordinates.push({lat:latLngResult[i].lat,lng:latLngResult[i].lng});
+      }
+
+      flightPath = new google.maps.Polyline({
+          path: flightPathCoordinates,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+      addLine();
+    }
+
+    function addLine() {
+        flightPath.setMap(map);
     }
 </script>
 

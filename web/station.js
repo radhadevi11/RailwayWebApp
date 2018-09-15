@@ -1,10 +1,17 @@
-    class Station{
-        constructor(latLng,code,name){
-             this.latLng = latLng;
-             this.code = code;
-             this.name = name;
-      }
-       addMarker(map){
+class LatLng {
+    constructor(lat, lng) {
+      this.lat = lat;
+      this.lng = lng;
+    }
+}
+class Station{
+    constructor(latLng,code,name){
+        this.latLng = latLng;
+        this.code = code;
+        this.name = name;
+    }
+  
+    addMarker(map){
           var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
@@ -36,14 +43,9 @@
                    document.getElementById('map').removeAttribute('title');
                  });
 
-        }
     }
+}
 
         
-    class LatLng {
-         constructor(lat, lng) {
-        this.lat = lat;
-        this.lng = lng;
-      }
-    }
+   
   

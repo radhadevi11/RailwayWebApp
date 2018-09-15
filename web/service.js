@@ -31,8 +31,10 @@
          			     trainsJsonArray[i].trainStops[j].departureTime,
          			     trainsJsonArray[i].trainStops[j].sequence,
          			     trainsJsonArray[i].trainStops[j].station.name,
-         			     trainsJsonArray[i].trainStops[j].distance)
-         			    );
+         			     trainsJsonArray[i].trainStops[j].distance,
+                        new LatLng(trainssJsonArray[i].trainStops[j].station.latLng.latitude,
+                            trainsJsonArray[i].trainStops[j].station.latLng.longitude)
+         			    ));
          	}
             trains.push(new Train(trainsJsonArray[i].number,
             	trainsJsonArray[i].name,

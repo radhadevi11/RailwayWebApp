@@ -9,12 +9,13 @@
       }
     }
     class TrainStop{
-    	constructor(arrivalTime,departureTime,sequence,stationName,distance){
+    	constructor(arrivalTime,departureTime,sequence,stationName,distance,latLng){
     		this.arrivalTime = arrivalTime;
     		this.departureTime = departureTime;
     		this.sequence = sequence;
     		this.stationName = stationName;
     		this.distance = distance;
+    		this.latLng = latLng;
 
     	}
     }
