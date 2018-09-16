@@ -33,7 +33,7 @@
           var trainDetail ="";
           for(var i=0;i<trains.length;i++){
              var tableBody= 
-                 "<tr onclick=\"clickTrain("+i+")\">\n"+
+                 "<tr onmouseover=\"drawLines("+i+")\"onmouseout=\"removeLine()\"onclick=\"showStops("+i+")\">\n"+
         "<td>"+trains[i].name+"</td>\n"+
         "<td>"+trains[i].number+"</td>\n"+
         "<td>"+trains[i].sourceStation.name+"</td>\n"+
@@ -113,11 +113,6 @@
     function openStopsPopUp(){
       document.getElementById('stops').setAttribute('class','visibleStops');
     }
-    function clickTrain(trainPosition){
-       showStops(trainPosition);
-       drawLines(trainPosition);
-
-    }
     function getLatLngs(trainPosition){
       var currentTrainStops=trains[trainPosition].trainStops;
       var latLngResult = [];
@@ -129,13 +124,13 @@
     }
     function drawLines(trainPosition){
       var latLngResult = getLatLngs(trainPosition);
-      var flightPathCoordinates =[];
+      var stationPathCoordinates =[];
       for(var i=0;i<latLngResult.length;i++){
-           flightPathCoordinates.push({lat:latLngResult[i].lat,lng:latLngResult[i].lng});
+           stationPathCoordinates.push({lat:latLngResult[i].lat,lng:latLngResult[i].lng});
       }
 
-      flightPath = new google.maps.Polyline({
-          path: flightPathCoordinates,
+     stationPath = new google.maps.Polyline({
+          path: stationPathCoordinates,
           strokeColor: '#FF0000',
           strokeOpacity: 1.0,
           strokeWeight: 2
@@ -145,8 +140,11 @@
     }
 
     function addLine() {
-        flightPath.setMap(map);
+        stationPath.setMap(map);
     }
+     function removeLine() {
+        stationPath.setMap(null);
+      }
 </script>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>

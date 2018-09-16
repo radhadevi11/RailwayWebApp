@@ -32,7 +32,7 @@
          			     trainsJsonArray[i].trainStops[j].sequence,
          			     trainsJsonArray[i].trainStops[j].station.name,
          			     trainsJsonArray[i].trainStops[j].distance,
-                        new LatLng(trainssJsonArray[i].trainStops[j].station.latLng.latitude,
+                        new LatLng(trainsJsonArray[i].trainStops[j].station.latLng.latitude,
                             trainsJsonArray[i].trainStops[j].station.latLng.longitude)
          			    ));
          	}

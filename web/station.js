@@ -30,7 +30,7 @@ class Station{
                          document.getElementById('sourceStation').value=name;
                          document.getElementById('sourceStationCode').value=code;
                     }
-                      else{
+                      else if(document.getElementById('destinationStation').value==""){
                         document.getElementById('destinationStation').value=name;
                           document.getElementById('destinationStationCode').value=code;
                       }

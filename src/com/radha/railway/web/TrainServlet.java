@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.radha.railway.controller.StationModel;
 import com.radha.railway.controller.TrainController;
 import com.radha.railway.controller.TrainModel;
+import com.radha.railway.service.NoSuchFromStationException;
+import com.radha.railway.service.NoSuchToStationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +27,23 @@ public class TrainServlet extends HttpServlet {
          TrainController trainController = new TrainController();
         String sourceStationCode = req.getParameter("sourceStationCode");
         String destinationStationCode = req.getParameter("destinationStationCode");
-        List<TrainModel> trainModels = trainController.getTrains(sourceStationCode,destinationStationCode);
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(trainModels);
         resp.setContentType("application/json");
-        resp.getWriter().println(jsonString);
+        try {
+            List<TrainModel> trainModels = trainController.getTrains(sourceStationCode, destinationStationCode);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(trainModels);
+            resp.getWriter().println(jsonString);
 
-        //https://code.visualstudio.com/nodejs
+            //https://code.visualstudio.com/nodejs
+        }
+        catch (NoSuchFromStationException e){
+            String error = "{\"error\": \"The from station was not found\"}";
+            resp.getWriter().println(error);
 
+        }
+        catch (NoSuchToStationException e){
+            String error = "{\"error\": \"The destination station was not found\"}";
+            resp.getWriter().println(error);
+        }
     }
 }
