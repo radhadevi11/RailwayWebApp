@@ -30,14 +30,9 @@ animation: animatebackground 60s linear infinite reverse;
 }
 
  @-webkit-keyframes colorchange {
-      0% {
-        
-        color: blue;
-      }
-      
       10% {
         
-        color: violet;
+        color: blue;
       }
       
       20% {
@@ -49,46 +44,30 @@ animation: animatebackground 60s linear infinite reverse;
         
         color: yellow;
       }
+    
       
       40% {
-        
-        color: black;
-      }
-      
-      50% {
-        
-        color: magenta;
-      }
-      
-      60% {
         
         color: red;
       }
       
-      70% {
+      50% {
         
         color: skyblue;
       }
-      80% {
+      60% {
      
-        color: brown;
-      }
+        color: gray;
+      }     
       
-      90% {
-     
-        color: orange;
-      }
-      
-      100% {
-        
-        color: pink;
-      }
     }
 #animated_div h1
 {
  padding-top:10px;
  font-size:50px;
+ font-family:helvetica;
  -webkit-animation:colorchange 20s infinite alternate;
+
 }
 #animated_div h1 p
 {
@@ -108,7 +87,7 @@ animation: animatebackground 60s linear infinite reverse;
  <div id="animated_div">
   <h1>Welcome To Radha Railway</h1>
   <div id="maplogo_div">
- <a href="http://localhost:8080/railway/map.html"> <img src="googlemapimg.png"alt="logo" height="180" width="270"></a>
+ <a href="http://localhost:8080/railway/map.html"> <img src="googlemap.png"alt="logo" height="180" width="180"></a>
   </div>
  </div>
 </div>

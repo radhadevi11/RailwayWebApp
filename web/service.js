@@ -2,7 +2,8 @@
         var request = new XMLHttpRequest(); //creating a object with the type of XMLHTTPRequest()
          request.open('GET','http://localhost:8080/railway/stations',false); //open method with the 3 parameter 
          request.send(null);//request body is null
-         var stationsJsonArray=JSON.parse(request.responseText);//loop through this json array,
+         var stationsJsonArray=JSON.parse(request.responseText);//resposeText is a string
+         //loop through this json array,
          //and convert each json objects to a station object add a station object to a station array
          var stations=[] ;
          for(var i=0;i<stationsJsonArray.length;i++){
@@ -44,6 +45,22 @@
                 );
          }
          return trains;
+
+    }
+    function getToStations(){
+        var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+        var request = new XMLHttpRequest(); //creating a object with the type of XMLHTTPRequest()
+         request.open('GET','http://localhost:8080/railway/tostations?sourceStationCode='+sourceStationCodeValue,false); //open method with the 3 parameter 
+         request.send(null);//request body is null
+         var toStationsJsonArray=JSON.parse(request.responseText);
+         var toStations=[] ;
+         for(var i=0;i<toStationsJsonArray.length;i++){
+            toStations.push(new Station(
+                new LatLng(toStationsJsonArray[i].latLng.latitude,toStationsJsonArray[i].latLng.longitude),
+                toStationsJsonArray[i].code,
+                toStationsJsonArray[i].name));
+         }
+         return toStations;
 
     }
      function getDummyTrains(){
