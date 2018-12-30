@@ -1,15 +1,15 @@
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-      <script src="station.js">
-      </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="station.js">
+    </script>
 
-      <script src="train.js">
-      </script>
+    <script src="train.js">
+    </script>
 
-      <script src="service.js"></script>
+    <script src="service.js"></script>
 
-      <script type="text/javascript">
+    <script type="text/javascript">
       var trains;
       var map;
 
@@ -29,10 +29,10 @@
         "<th>SourceStation</th>\n"+
         "<th>DestinationStation</th>\n"+
       "</tr>\n";
-           
+
           var trainDetail ="";
           for(var i=0;i<trains.length;i++){
-             var tableBody= 
+             var tableBody=
                  "<tr onmouseover=\"drawLines("+i+")\"onmouseout=\"removeLine()\"onclick=\"showStops("+i+")\">\n"+
         "<td>"+trains[i].name+"</td>\n"+
         "<td>"+trains[i].number+"</td>\n"+
@@ -44,11 +44,11 @@
           }
 
           document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
-      
+
 
         }
-          
-       
+
+
        function arrayOfCities(){
               var cities = getAllStations();
                map = new google.maps.Map(document.getElementById('map'), {/*google.maps.map constructor The ID where the map will place,which location will be center,How much the map will be zoom*/
@@ -56,7 +56,7 @@
                 zoom:7
               });
               for(var i=0;i<cities.length;i++){
-                cities[i].addMarker(map);//calling addMarker function for adding marker for given 
+                cities[i].addMarker(map);//calling addMarker function for adding marker for given
 
               }
        }
@@ -70,7 +70,7 @@
     else{
       return true;
     }
-    
+
 }
     function showStops(trainPosition){
       //show the intermediate stations for the train which the user choose
@@ -90,7 +90,7 @@
 
       var trainStopDetail ="";
           for(var i=0;i<currentTrainStops.length;i++){
-             var tableBody= 
+             var tableBody=
                  "<tr>\n"+
         "<td>"+currentTrainStops[i].arrivalTime+"</td>\n"+
         "<td>"+currentTrainStops[i].departureTime+"</td>\n"+
@@ -100,7 +100,7 @@
         "</tr>\n";
               trainStopDetail = trainStopDetail+tableBody;
 
-          }   
+          }
       document.getElementById('stops').innerHTML = tableHeader+trainStopDetail+"</table>";
       document.getElementById('stops').innerHTML =  document.getElementById('stops').innerHTML+"<button onclick=\"closeStopsPopUp()\">Close</button>";
       openStopsPopUp();
@@ -147,12 +147,12 @@
       }
 </script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
-      </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmDJDvkorNNmPnv-uCOc8ArMpckF0FuYg&callback=arrayOfCities" async defer>
+    </script>
 
-          <meta charset="UTF-8">
-          <title>RailwayMap</title>
-          <style>
+    <meta charset="UTF-8">
+    <title>RailwayMap</title>
+    <style>
             /* Optional: Makes the sample page fill the window. */
             html, body {
               height: 100%;
@@ -212,27 +212,28 @@
 
 
           </style>
-      </head>
+</head>
 
-      <body>
-      <div id="map"></div>
-      <div id="text">
-        <form >
-          Enter the sourceStation :<br>
-          <input type="text" name="sourceStation" id="sourceStation"  readonly>
-          <br><br>
-          <input type="hidden" id="sourceStationCode" name="sourceStationCode">
-          Enter the destinationStation :<br>
-          <input type="text" name="destinationStation" id="destinationStation" readonly>
-          <input type="hidden" name="destinationStationCode" id="destinationStationCode">
-           <br><br>
-          <button onclick="getPossibleTrains();return false;">GetTrains</button>
-          <input type="reset" value="Clear">
-        </form>
-         <div id="trainResult">      
-         </div>
-      </div>
-       <div id="stops" class="hiddenStops">
-       </div>
-      </body>
-      </html>
+<body>
+<div id="map"></div>
+<div id="text">
+    <form >
+        Enter the sourceStation :<br>
+        <input type="text" name="sourceStation" id="sourceStation"  readonly>
+        <br><br>
+        <input type="hidden" id="sourceStationCode" name="sourceStationCode">
+
+        Enter the destinationStation :<br>
+        <input type="text" name="destinationStation" id="destinationStation" readonly>
+        <input type="hidden" name="destinationStationCode" id="destinationStationCode">
+        <br><br>
+        <button onclick="getPossibleTrains();return false;">GetTrains</button>
+        <input type="reset" value="Clear">
+    </form>
+    <div id="trainResult">
+    </div>
+</div>
+<div id="stops" class="hiddenStops">
+</div>
+</body>
+</html>
