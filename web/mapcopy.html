@@ -4,7 +4,7 @@
     <script src="station.js">
     </script>
 
-    <script src="train.js">ff
+    <script src="train.js">
     </script>
 
     <script src="service.js"></script>
@@ -21,8 +21,29 @@
           if(trains.length==0){
             alert("There is no train available for this stations");
           }
-           var responseFromJsp=getAllTrainsJsp();
-           document.getElementById('trainResult').innerHTML=responseFromJsp;
+          var tableHeader=
+          "<table id="+"train"+">\n"+
+      "<tr>\n"+
+        "<th>TrainName</th>\n"+
+        "<th>TrainNumber</th>\n"+
+        "<th>SourceStation</th>\n"+
+        "<th>DestinationStation</th>\n"+
+      "</tr>\n";
+
+          var trainDetail ="";
+          for(var i=0;i<trains.length;i++){
+             var tableBody=
+                 "<tr onmouseover=\"drawLines("+i+")\"onmouseout=\"removeLine()\"onclick=\"showStops("+i+")\">\n"+
+        "<td>"+trains[i].name+"</td>\n"+
+        "<td>"+trains[i].number+"</td>\n"+
+        "<td>"+trains[i].sourceStation.name+"</td>\n"+
+        "<td>"+trains[i].destinationStation.name+"</td>\n"+
+        "</tr>\n";
+              trainDetail = trainDetail+tableBody;
+
+          }
+
+          document.getElementById('trainResult').innerHTML=tableHeader+trainDetail+"</table>";
 
 
         }
@@ -196,7 +217,7 @@
 <body>
 <div id="map"></div>
 <div id="text">
-    <form onsubmit="event.preventDefault();" >
+    <form >
         Enter the sourceStation :<br>
         <input type="text" name="sourceStation" id="sourceStation"  readonly>
         <br><br>

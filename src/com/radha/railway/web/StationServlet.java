@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class StationServlet extends HttpServlet{
        String jsonString = gson.toJson(stationModels);
        resp.setContentType("application/json");
        resp.getWriter().println(jsonString);
+       PrintWriter out = resp.getWriter();
+
    }
    //C:\Users\radha\.m2\repository\com\google\code\gson\gson\2.8.5 =>jar file location
 
