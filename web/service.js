@@ -80,3 +80,13 @@
        return cities;
 
     }
+    function getAllTrainsJsp(){
+         var sourceStationCodeValue = document.getElementById('sourceStationCode').value;
+         var destinationStationCodeValue= document.getElementById('destinationStationCode').value;
+         var request = new XMLHttpRequest();
+         request.open('GET','http://localhost:8080/railway/trains.jsp?sourceStationCode='+sourceStationCodeValue+
+                     '&destinationStationCode='+destinationStationCodeValue,false); 
+         request.send(null);
+         return request.responseText;
+
+    }
